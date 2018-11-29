@@ -4,8 +4,8 @@ import axios from 'axios'
  function userReducer(state=userState,action) {
     switch (action.type) {
         case 'login':
-            var {user,psw,_id,type}=action.data
-            return {...state,user,psw,_id,type}
+            var {user,psw,_id,type,des,job,avatar,company,money}=action.data
+            return {...state,user,psw,_id,type,des,job,avatar,company,money}
         case 'register':
             var {user,psw,_id,type}=action.data
             return {...state,user,psw,_id,type}
@@ -14,6 +14,8 @@ import axios from 'axios'
             return {...state,user,psw,_id,type,des,job,avatar,company,money}
         case'getmsg':
             return {...state,user,psw,_id,type,des,job,avatar,company,money}
+        case 'getuserlist':
+            return {...state,list:action.data}
         default:
             return state
     }
@@ -23,8 +25,9 @@ import axios from 'axios'
 
  function register({user,psw,rpsw,type}){
     return dispatch=>{
-        axios.post("user/register",{user,psw,rpsw,type})
+        axios.post("/user/register",{user,psw,rpsw,type})
         .then((res)=>{
+            console.log(res.data.data._id)
             localStorage.setItem('Uid',res.data.data._id)
             dispatch({
                 type:'register',
@@ -37,7 +40,7 @@ import axios from 'axios'
 
 function login({user,psw}) {
     return dispatch=>{
-        axios.post('user/login',{user,psw})
+        axios.post('/user/login',{user,psw})
             .then((res)=>{
                 localStorage.setItem('Uid',res.data.data._id)
                 dispatch({
@@ -51,7 +54,7 @@ function login({user,psw}) {
 function update({user,avatar,job,des,money,company})
 {
     return dispatch=>{
-        axios.post('user/update',{user,avatar,job,des,money,company})
+        axios.post('/user/update',{user,avatar,job,des,money,company})
             .then((res)=>{
                 dispatch({
                     type:'update',
@@ -63,7 +66,7 @@ function update({user,avatar,job,des,money,company})
 
 function getMsg(_id) {
     return dispatch=>{
-        axios.post('user/getmsg',{_id})
+        axios.post('/user/getmsg',{_id})
             .then((res)=>{
                 if(res.data.code==0)
                 {
@@ -81,11 +84,24 @@ function getMsg(_id) {
     }
 }
 
+function findall(type) {
+    return dispatch =>{
+        axios.get('/user/find',{params:{type}})
+            .then((res)=>{
+                dispatch({
+                    type:'getuserlist',
+                    data:res.data.data
+                })
+            })
+    }
+}
+
 
 const  userActions = [
     register,
     login,
     update,
-    getMsg
+    getMsg,
+    findall
 ]
 export {userActions,userReducer}

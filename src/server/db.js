@@ -12,6 +12,13 @@ const initDb = {
         avatar:String,
         money:String,
         company:String
+    },
+    chat:{
+        from:String,
+        to:String,
+        read:Boolean,
+        content:String,
+        time:String
     }
 }
 

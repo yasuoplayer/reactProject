@@ -12,7 +12,7 @@ import Login from './components/login/login'
 import Register from './components/register/register'
 import Geniusinfo from './components/personalInfo/geniusInfo'
 import Bossinfo from './components/personalInfo/bossInfo'
-
+import Content from './components/content/content'
 axios.interceptors.request.use(function (config) {
     Toast.loading('数据加载中', 0)
     return config
@@ -52,6 +52,7 @@ class App extends React.Component
                         <Route path='/geniusinfo'  component={Geniusinfo} />
                         <Route path='/login' component={Login}></Route>
                         <Route path='/register'  component={Register}/>
+                        <Route path='/content'  component={Content}/>
                         <Redirect to='/login' component={Login}></Redirect>
                     </Switch>
                 </div>

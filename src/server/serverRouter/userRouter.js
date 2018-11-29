@@ -91,7 +91,6 @@ userRouter.post('/getmsg',(req,res)=>{
             }
             if(data.length)
             {
-                console.log(data[0]);
                 res.json({code:1,data:data[0]})
                 return
             }
@@ -132,6 +131,17 @@ userRouter.post('/update',(req,res)=>{
                 })
             }
         })
+    })
+})
+
+userRouter.get('/find',(req,res)=>{
+    const type = req.query.type
+    user.find({type},(err,data)=>{
+        if(err)
+        {
+            res.json({code:1,msg:'后台出错'})
+        }
+        res.json({code:1,data})
     })
 })
 

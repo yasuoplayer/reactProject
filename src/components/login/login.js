@@ -23,15 +23,32 @@ class Login extends React.Component{
     }
 
 
+
+
     render()
     {
         {
             if (this.props.state.userReducer._id) {
                 if (this.props.state.userReducer.type == 'genius') {
-                    this.props.history.push('/geniusinfo')
+                    if(this.props.state.userReducer.avatar)
+                    {
+                        this.props.history.push('/content/userlist')
+                    }
+                    else
+                    {
+                        this.props.history.push('/geniusinfo')
+                    }
+
                 }
                 else {
-                    this.props.history.push('/bossinfo')
+                    if(this.props.state.userReducer.avatar)
+                    {
+                        this.props.history.push('/content/userlist')
+                    }
+                    else
+                    {
+                        this.props.history.push('/bossinfo')
+                    }
                 }
 
             }
