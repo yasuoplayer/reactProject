@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Grid,WingBlank,NavBar,InputItem,WhiteSpace,List,TextareaItem,Button} from 'antd-mobile';
 import {userActions} from '../../reducers/user'
+import {Redirect} from 'react-router-dom'
 class Geniusinfo extends React.Component{
     constructor()
     {
@@ -61,6 +62,7 @@ class Geniusinfo extends React.Component{
             <WingBlank>
                 {this.state.avatar?isSelcet:notSelct}
             </WingBlank>
+            {this.props.state.userReducer.goto? <Redirect to={this.props.state.userReducer.goto} />:null}
             <Grid data={data} columnNum={5} onClick={(el)=>{this.setState({avatar:el.icon})}}/>
             <List renderHeader={() => '填写求职信息'}>
                 <InputItem

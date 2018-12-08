@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Grid,WingBlank,NavBar,InputItem,WhiteSpace,List,TextareaItem,Button} from 'antd-mobile';
 import {userActions} from '../../reducers/user'
+import {Redirect} from 'react-router-dom'
 class Bossinfo extends React.Component{
     constructor()
     {
@@ -42,9 +43,6 @@ class Bossinfo extends React.Component{
 
     render()
     {
-
-
-
         const data = Array.from(new Array(10)).map((_val, i) => ({
             icon: require(`./img/${i}.png`),
             text: i,
@@ -56,9 +54,10 @@ class Bossinfo extends React.Component{
         let notSelct = <div>
             <span style={{verticalAlign:'bottom'}}>请选择头像</span>
         </div>;
-
+            console.log(this.props.state.userReducer.goto)
         return <div>
             <NavBar mode={"dark"}>资料编辑</NavBar>
+            {this.props.state.userReducer.goto? <Redirect to={this.props.state.userReducer.goto} />:null}
             <WingBlank>
                 {this.state.avatar?isSelcet:notSelct}
             </WingBlank>

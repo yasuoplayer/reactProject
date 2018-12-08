@@ -45,6 +45,9 @@ class Talk extends React.Component{
         const list = this.props.state.chatReducer.data.data
         const user = this.state.user
         this.props.sendmsg({to,val,time,read,user})
+        this.setState({
+            msg:''
+        })
     }
     render()
     {
@@ -119,7 +122,6 @@ const Actions = (dispatch)=>{
     return{
         getchat:(a)=>dispatch(getchat(a)),
         sendmsg:(a)=>dispatch(sendmsg(a)),
-
     }
 }
 Talk=connect(State,Actions)(Talk)

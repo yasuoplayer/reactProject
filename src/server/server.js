@@ -1,8 +1,6 @@
 const express = require('express');
 const {userRouter} = require('./serverRouter/userRouter')
 const {chatRouter} = require('./serverRouter/chatRouter')
-const proxy = require('http-proxy-middleware')
-const cookieparser = require('cookie-parser')
 const app = express();
 const {getModel} = require('./db')
 const chat = getModel('chat')
@@ -24,14 +22,10 @@ io.on('connection',(socket)=>{
 
     })
 })
-
-
 app.get('/', function(req, res,) {
     res.end('1')
 });
 
-
-app.use(cookieparser())
 app.use('/user',userRouter);
 app.use('/chat',chatRouter);
 server.listen(1111)

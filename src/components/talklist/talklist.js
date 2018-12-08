@@ -5,7 +5,6 @@ import {List} from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
 const Item = List.Item;
 const Brief = Item.Brief;
-
 class Talklist extends React.Component{
     constructor()
     {
@@ -35,9 +34,6 @@ class Talklist extends React.Component{
         this.props.read(from,to)
         this.props.history.push(`/content/talk?from=${from}&&to=${to}`);
     }
-
-
-
     render()
     {
 

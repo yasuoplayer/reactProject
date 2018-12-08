@@ -13,6 +13,7 @@ class Content extends React.Component{
         this.state={
             select:'one',
             user:null,
+            type:''
         }
     }
     change(type)
@@ -41,14 +42,13 @@ class Content extends React.Component{
         const user = this.props.state.userReducer.user
         this.props.getchat(user)
         this.props.initsocket(user)
+        this.setState({
+            type:this.props.state.userReducer.type
+        })
     }
-
-
 
     render()
     {
-
-
         const flg = this.props.location.pathname=='/content/talk'?true:false
         let icon ;
         let title = '列表'
@@ -76,10 +76,10 @@ class Content extends React.Component{
             <TabBar tintColor={'#108ee9'} tabBarPosition={"bottom"}
                     hidden={flg}
             >
-                <TabBar.Item title={'牛人'}
+                <TabBar.Item title={this.state.type=='boss'?'牛人':'boss'}
                              icon={{uri:require('./img/icon1.png')}}
                              selected={this.state.select=='one'?true:false}
-                             key={'牛人'}
+                             key={this.state.type=='boss'?'牛人':'boss'}
                              onPress={()=>{this.change('one')}}
                              selectedIcon={{uri:require('./img/icon2.png')}}>
                 </TabBar.Item>

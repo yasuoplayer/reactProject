@@ -7,14 +7,12 @@ const chatRouter = express.Router();
 
 chatRouter.get('/list',(req,res)=>{
     chat.find({},(err,data)=>{
-        console.log(data)
         res.json(data)
     })
 });
 
 chatRouter.get('/remove',(req,res)=>{
     chat.remove({},(err,data)=>{
-        console.log(data)
         res.json(data)
     })
 });

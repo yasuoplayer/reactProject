@@ -11,7 +11,8 @@ import axios from 'axios'
             return {...state,user,psw,_id,type}
         case 'update':
             var {user,psw,_id,type,des,job,avatar,company,money}=action.data
-            return {...state,user,psw,_id,type,des,job,avatar,company,money}
+            let goto='/content/userlist'
+            return {...state,user,psw,_id,type,des,job,avatar,company,money,goto}
         case'getmsg':
             return {...state,user,psw,_id,type,des,job,avatar,company,money}
         case 'getuserlist':
